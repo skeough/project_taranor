@@ -2,16 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: Split out groups of defines into interfaces
 public interface iBaseItem {
+    string type {get; set;}
     int value {get; set;}
-    string material {get; set;}
+    decimal quality {get; set;}
+    // void Sell();
+    // void Buy();
 }
+
+public interface iOwnable {
+    
+}
+
+public interface iEquipable {
+
+}
+
+public interface iWeapon {
+    string dmgType {get; set;}
+    int dmg {get; set;}
+}
+
 public interface iMelee {
+    Dictionary components {get; set;}
+
     void Strike(string dmgType);
 }
 
 public interface iRanged {
-    void Shoot(string projectile);
+    Dictionary components {get; set;}
+
+    void Shoot(Item projectile);
+}
+
+public interface iMagic {
+    Dictionary components {get; set;}
+
+    void Cast();
 }
 
 public interface iStackable {
@@ -28,8 +56,14 @@ public interface iPileable {
     int storeTo {get; set;}
 }
 
-public class Item {
+public interface Craftable {
+    list requires {get; set;}
+    string recipe {get; set;}
 
-    //TODO: Split out groups of defines into interfaces
+    void Craft();
+    void Dissassemble();
+}
+
+public class Item {
 
 }
